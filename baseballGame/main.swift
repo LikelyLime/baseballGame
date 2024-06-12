@@ -6,14 +6,47 @@ import Foundation
 
 
 class baseballGame{
-    func gameStart(){
+    func gameMainPage(){
+        var gameCounts: [Int] = []
+        print("환영합니다! 원하시는 번호를 입력해주세요")
+        
+        while true{
+            print("1. 게임 시작하기  2. 게임 기록 보기  3. 종료하기")
+            if let input = readLine(){
+                if input == "1"{
+                    gameCounts.append(gameStart())
+                }else if input == "2"{
+                    historyView(gameCounts)
+                }else if input == "3"{
+                    print("< 숫자 야구 게임을 종료합니다 >")
+                    break
+                }else{
+                    print("유효하지 않은 숫자 입니다.")
+                }
+            }
+        }
+    }
+    func historyView(_ gameCounts: [Int]){
+        print("< 게임 기록 보기 >")
+        for (index, element) in gameCounts.enumerated(){
+            print("\(index + 1)번째 게임 : 시도 횟수 - \(element)")
+        }
+    }
+    /**
+     게임 시작
+     */
+    func gameStart() -> Int{
         print("< 게임을 시작합니다 >")
         // 게임에 필요한 정답 만들기
         let answer = createAnswer()
         var inputAry: [Int] = []
+        var gameCount = 0
         while true{
             //값 받아오기
             print("숫자를 입력하세요")
+            //몇번 호출했는지 숫자 카운트
+            gameCount += 1
+            
             if let input = readLine(){
                 inputAry = input.compactMap{ Int( String($0) ) }
                 if inputAry.count != 3 || checkDuplication(inputAry){
@@ -35,6 +68,7 @@ class baseballGame{
             }
             
         }
+        return gameCount
     }
     /**
      배열의 중복값 확인하는 메서드
@@ -91,7 +125,10 @@ class baseballGame{
         var result: [Int] = []
         while result.count != 3{
             let num = Int.random(in: 0...9)
-            if !result.contains(num) || ( result.count == 0 && num != 0 ){
+            if !result.contains(num){
+                if  result.isEmpty && num == 0{
+                    continue
+                }
                 result.append(num)
             }
         }
@@ -99,7 +136,7 @@ class baseballGame{
     }
 }
 
-print(baseballGame().gameStart())
-//print(baseballGame().createAnswer())
+//print(baseballGame().gameMainPage())
+print(baseballGame().createAnswer())
 //print(baseballGame().checkBall([3,2,5], [3,1,2]))
 //print(baseballGame().checkStrike([3,2,5], [3,2,2]))
