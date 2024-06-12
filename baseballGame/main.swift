@@ -6,6 +6,9 @@ import Foundation
 
 
 class baseballGame{
+    /**
+     게임의 메인페이지
+     */
     func gameMainPage(){
         var gameCounts: [Int] = []
         print("환영합니다! 원하시는 번호를 입력해주세요")
@@ -26,6 +29,9 @@ class baseballGame{
             }
         }
     }
+    /**
+     게임 기록 보여주는 메서드
+     */
     func historyView(_ gameCounts: [Int]){
         print("< 게임 기록 보기 >")
         for (index, element) in gameCounts.enumerated(){
