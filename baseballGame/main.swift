@@ -142,7 +142,7 @@ class baseballGame{
     }
 }
 
-//print(baseballGame().gameMainPage())
-print(baseballGame().createAnswer())
+print(baseballGame().gameMainPage())
+//print(baseballGame().createAnswer())
 //print(baseballGame().checkBall([3,2,5], [3,1,2]))
 //print(baseballGame().checkStrike([3,2,5], [3,2,2]))
